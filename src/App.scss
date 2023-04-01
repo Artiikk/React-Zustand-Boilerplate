@@ -1,0 +1,39 @@
+@import "styles/variables";
+@import "styles/fonts";
+@import "styles/colors";
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+body {
+  min-height: 100vh;
+
+  .theme-light {
+    @include lightThemeColors();
+  }
+
+  .theme-dark {
+    @include darkThemeColors();
+  }
+}
+
+/* Mobile view */
+.App-mobile {
+  min-width: 320px;
+}

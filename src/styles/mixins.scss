@@ -1,0 +1,357 @@
+@import 'variables';
+@import 'trains';
+@import 'scrollbar';
+
+@mixin wrapper() {
+    @include desktopWrapper;
+
+    &_mobile {
+        @include mobileWrapper;
+    }
+}
+
+@mixin desktopWrapper() {
+    width: 100%;
+    min-width: $SCREEN_DESKTOP_MIN;
+    max-width: $SCREEN_MAX;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+@mixin mobileWrapper() {
+    min-width: $SCREEN_MOBILE_MIN;
+    padding-right: 16px;
+    padding-left: 16px;
+
+    @media (max-width: $SCREEN_MOBILE_MIN) {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin linkReset() {
+    font-weight: normal;
+    text-decoration: none;
+    color: var(--yatravel-link-primary-color);
+    outline: none;
+
+    &:hover {
+        color: var(--yatravel-link-generic-hover-color);
+    }
+}
+
+@mixin absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+    position: absolute;
+    inset: $top $right $bottom $left;
+}
+
+@mixin fixed($top: auto, $right: auto, $bottom: auto, $left: auto) {
+    position: fixed;
+    inset: $top $right $bottom $left;
+}
+
+@mixin absoluteTopCenter() {
+    transform: translateY(-50%);
+
+    @include absolute(50%, 0, 0, 0);
+}
+
+@mixin absoluteCenter() {
+    transform: translate(-50%, -50%);
+
+    @include absolute(50%, auto, auto, 50%);
+}
+
+@mixin flexCenter() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin rightTriangle($size: 10px, $color: #000) {
+    border-top: $size solid transparent;
+    border-right: 0 solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size * 0.5 solid $color;
+
+    @include size(0, 0);
+}
+
+@mixin popupBaseStyles() {
+    overflow: hidden;
+    border: none;
+    border-radius: 4px;
+    box-shadow: $obj-pop-up-shadow;
+}
+
+@mixin nestedLinkIndex() {
+    position: relative;
+    z-index: 2;
+}
+
+@mixin textOverflowEllipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin normalizeControl() {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    appearance: none;
+}
+
+// Safari 10.1+
+@mixin safariOnly {
+    @media not all and (min-resolution: 0.001dpcm) {
+        @supports (-webkit-appearance: none) {
+            @content;
+        }
+    }
+}
+
+@mixin maxScreenMedia($maxWidth) {
+    @media (max-width: $maxWidth) {
+        @content;
+    }
+}
+
+@mixin minScreenMedia($minWidth) {
+    @media (min-width: $minWidth) {
+        @content;
+    }
+}
+
+@mixin overlay() {
+    position: absolute;
+    inset: 0;
+}
+
+@mixin preventTapHighlight() {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@mixin simpleLoaderAnimateWidth($animateTime: 5s, $animateTiming: ease-in) {
+    width: 100%;
+    animation: simpleLoaderWidth $animateTime $animateTiming;
+
+    @keyframes simpleLoaderWidth {
+        0% {
+            width: 0;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+}
+
+@mixin buttonReset() {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    cursor: default;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background-color: transparent;
+
+    @include preventTapHighlight;
+
+    &::-moz-focus-inner {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        color: currentcolor;
+    }
+}
+
+@mixin rotate($duration: $DURATION_FAST, $angle: 180deg) {
+    transition: transform $duration;
+
+    &_rotate {
+        transform: rotate($angle);
+    }
+}
+
+@mixin pointSeparator($scale: 1) {
+    display: inline-block;
+    margin-right: $scale * 4px;
+    margin-left: $scale * 4px;
+    content: '\00B7';
+    color: var(--yatravel-text-secondary-color);
+}
+
+@mixin pointSeparatorBefore($scale: 1) {
+    &::before {
+        @include pointSeparator($scale);
+    }
+}
+
+@mixin pointSeparatorAfter($scale: 1) {
+    &::after {
+        @include pointSeparator($scale);
+    }
+}
+
+@mixin roundedList($radius) {
+    border-radius: 0;
+
+    &:first-child {
+        border-top-left-radius: $radius;
+        border-top-right-radius: $radius;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: $radius;
+        border-bottom-left-radius: $radius;
+    }
+}
+
+@mixin buttonScale() {
+    transition: transform 0.1s ease-out, color 0.15s linear;
+    transform: scale(1);
+
+    &:active {
+        transition: none;
+        transform: scale(0.96);
+    }
+}
+
+@mixin notFirstChild() {
+    &:not(:first-child) {
+        @content;
+    }
+}
+
+@mixin notLastChild() {
+    &:not(:last-child) {
+        @content;
+    }
+}
+
+/* Crossbrowser object-fit */
+@mixin object-fit-cover() {
+    img {
+        object-fit: cover;
+    }
+}
+
+/* Crossbrowser object-fit contain */
+@mixin object-fit-contain() {
+    img {
+        object-fit: contain;
+    }
+}
+
+/* Разделитель с точкой и двумя пробелами с двух сторон (требование по дизайну) */
+@mixin pointSeparatorWithSpaces($color: currentColor) {
+    &::after {
+        content: '\00a0\00a0\2022\00a0  ';
+        white-space: pre-wrap;
+        color: $color;
+    }
+
+    &:last-child::after {
+        display: none;
+    }
+}
+
+@mixin pointSeparatorWithSpacesBefore($color: currentColor) {
+    &::before {
+        content: '\00a0\00a0\2022\00a0  ';
+        white-space: pre-wrap;
+        color: $color;
+    }
+
+    &:first-child::before {
+        display: none;
+    }
+}
+
+@mixin ulReset() {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+@mixin fieldsetReset() {
+    margin: 0;
+    padding: 0;
+    min-inline-size: unset;
+    border: none;
+}
+
+@mixin backgroundClipText() {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin increaseAreaOfClick(
+    $top: 5px,
+    $right: 0,
+    $bottom: 5px,
+    $left: 0,
+    $position: relative,
+    $cursor: pointer
+) {
+    position: $position;
+
+    &::before {
+        position: absolute;
+        inset: $top * -1 $right * -1 $bottom * -1 $left * -1;
+        display: block;
+        content: '';
+        cursor: $cursor;
+    }
+}
+
+@mixin withPictureBorder($border-radius: 0) {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        inset: 0;
+        content: '';
+        border: 1px solid var(--yatravel-border-picture-primary-color);
+        border-radius: $border-radius;
+    }
+}
+
+@mixin grayImage() {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+@mixin whitePattern() {
+    &::before {
+        position: absolute;
+        inset: 0;
+        content: '';
+        display: block;
+        pointer-events: none;
+        background: url('') repeat;
+    }
+}

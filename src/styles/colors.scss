@@ -1,0 +1,24 @@
+@import 'lightThemeColors';
+@import 'darkThemeColors';
+
+@mixin darkThemeColors() {
+    // CORE COLORS:
+    --core-yellow-color: #{$dark-core-yellow-color};
+    --core-grey-dark-color: #{$dark-core-grey-dark-color};
+    --core-grey-light-color: #{$dark-core-grey-light-color};
+    --core-blue-color: #{$dark-core-blue-color};
+    --core-red-color: #{$dark-core-red-color};
+    --core-brown-color: #{$dark-core-brown-color};
+    --core-green-color: #{$dark-core-green-color};
+}
+
+@mixin lightThemeColors {
+    // CORE COLORS:
+    --core-yellow-color: #{#{$light-core-yellow-color}};
+    --core-grey-dark-color: #{$light-core-grey-dark-color};
+    --core-grey-light-color: #{$light-core-grey-light-color};
+    --core-blue-color: #{$light-core-blue-color};
+    --core-red-color: #{$light-core-red-color};
+    --core-brown-color: #{$light-core-brown-color};
+    --core-green-color: #{$light-core-green-color};
+}
