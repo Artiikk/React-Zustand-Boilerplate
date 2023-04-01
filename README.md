@@ -9,7 +9,7 @@ Whether you're a seasoned React developer or just getting started, this boilerpl
 - Zustand: This library provides a simple, yet powerful, way to manage state in your React application. It allows you to create stores with minimal boilerplate and provides a way to subscribe to changes in the state.
 - React-Query: This library provides a way to fetch and cache data in your React application.
 
-To use this boilerplate, jsut clone the repository and run the following commands:
+To use this boilerplate, just clone the repository and run the following commands:
 
 ```
 yarn
