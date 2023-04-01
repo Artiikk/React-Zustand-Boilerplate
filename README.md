@@ -15,4 +15,4 @@ This will start the development server and open the application in your default 
 
 - Vite: This tool provides a fast development experience with instant hot module replacement and fast builds. It also comes with built-in support for Typescript, React, and CSS modules.
 - Zustand: This library provides a simple, yet powerful, way to manage state in your React application. It allows you to create stores with minimal boilerplate and provides a way to subscribe to changes in the state.
-- React-Query: This library provides a way to fetch and cache data in your React application. It makes it easy to handle loading,
+- React-Query: This library provides a way to fetch and cache data in your React application.
